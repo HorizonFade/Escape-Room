@@ -1,20 +1,25 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import 'dotenv/config';
 
 const app = express();
 const port = 3000;
 
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
-    database: "escape",
-    password: "rkzrkz135",
-    port: 5432
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT
   });
 
-const password="IcE=T4WYa2-+UB";
+const password="IcE=TWYa2-+UB";
 let taskCounter=0;
+let standortCounter=0;
+let loesungCounter=0;
+let progressBar;
+const showSolution="none";
 let tasks = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,7 +70,8 @@ app.get("/", async (req,res)=>{
             });
         });
     }
-    res.render("index.ejs",{task: tasks[taskCounter], showSolution: false});
+    progressBar=Math.floor(100/tasks.length);
+    res.render("index.ejs",{task: tasks[taskCounter], showSolution: showSolution, progressBar: progressBar*taskCounter});
 });
 
 
@@ -73,139 +79,44 @@ app.post("/", (req,res)=>{
     if(req.body.password==tasks[taskCounter].solution){
     if(taskCounter<tasks.length-2){
         taskCounter++;
-        res.render("index.ejs", {isCorrect: true, task: tasks[taskCounter], showSolution: false});
+        res.render("index.ejs", {isCorrect: true, task: tasks[taskCounter], showSolution: showSolution, progressBar: progressBar*taskCounter});
     }else if(taskCounter==tasks.length-2){
         taskCounter++;
-        res.render("index.ejs", {isCorrect: true, task: tasks[taskCounter], showSolution: false, lastTask: true});
+        res.render("index.ejs", {isCorrect: true, task: tasks[taskCounter], showSolution: showSolution, progressBar: progressBar*taskCounter, lastTask: true});
 
     }else{
-        res.render("index.ejs", {secret: true});
+        res.render("index.ejs", {secret: true, standortCounter: standortCounter, loesungCounter: loesungCounter});
     }
     }else{
-        res.render("index.ejs", {isCorrect: false, task: tasks[taskCounter], showSolution: false});
+        res.render("index.ejs", {isCorrect: false, task: tasks[taskCounter], showSolution: showSolution, progressBar: progressBar*taskCounter});
     }
 });
 
 app.post("/hint", (req,res)=>{
-        res.render("index.ejs",{task: tasks[taskCounter], showSolution: true});
+    const action = req.body.action;
+
+    if(action == "standort"){
+        res.render("index.ejs",{task: tasks[taskCounter], showSolution: "standort", progressBar: progressBar*taskCounter});
+        if(standortCounter<=taskCounter){
+            standortCounter++;
+        }
+    }else if(action == "loesung"){
+        res.render("index.ejs",{task: tasks[taskCounter], showSolution: "loesung", progressBar: progressBar*taskCounter});
+        if(loesungCounter<=taskCounter){
+            loesungCounter++;
+        }
+        
+    }
 });
 
 app.post("/reset", (req,res)=>{
     taskCounter=0;
-    res.render("index.ejs",{task: tasks[taskCounter], showSolution: false});
+    standortCounter=0;
+    loesungCounter=0;
+
+    res.render("index.ejs",{task: tasks[taskCounter], showSolution: showSolution, progressBar: progressBar*taskCounter});
 });
 
 app.listen(port, ()=>{
     console.log(`Server running on Port: ${port}`);
 });
-
-
-/*
-const tasks = [
-    {
-        id: 1,
-        hint: "Im Raum ist ein Buch mit der Aufschrift: \"Python für Einsteiger\". Findet die Seitennummer des Kapitels: \"Operatoren und Operatorrangfolge\".",
-        extra: "",
-        solution: 73,
-        char: "I"
-    },
-    {
-        id: 2,
-        hint: "Eventuell könnte man nach QR-Codes suchen. Vielleicht ist darin etwas versteckt.",
-        extra: "",
-        solution: 99,
-        char: "c"
-    },
-    {
-        id: 3,
-        hint: "Mmmh, ich würde eventuell mal die schönen Bilder im Raum anschauen.",
-        extra: "",
-        solution: 69,
-        char: "E"
-    },
-    {
-        id: 4,
-        hint: "Wem gehört das Blatt im Drucker?",
-        extra: "",
-        solution: 61,
-        char: "="
-    },
-    {
-        id: 5,
-        hint: "Die Rollcontainer sind echt praktisch für persönliche Dokumente.",
-        extra: "",
-        solution: 84,
-        char: "T"
-    },
-    {
-        id: 6,
-        hint: "Mal sehen, ob der Roboter irgendwelche Zahlen ausspuckt.",
-        extra: "",
-        solution: 52,
-        char: "4"
-    },
-    {
-        id: 7,
-        hint: "Wie soll man denn schreiben, wenn die Tastatur falsch herum liegt?",
-        extra: "01010111",
-        solution: 87,
-        char: "W"
-    },
-    {
-        id: 8,
-        hint: "Ich muss beim ICP anrufen, wie war nochmal die Vorwahl von München?",
-        extra: "",
-        solution: 89,
-        char: "Y"
-    },
-    {
-        id: 9,
-        hint: "Der Schrank ist ziemlich staubig, ich glaube man sollte ihn mal wieder sauber machen.",
-        extra: "",
-        solution: 97,
-        char: "a"
-    },
-    {
-        id: 10,
-        hint: "Wir müssen immer das Inventar aufschreiben, ich glaube wir haben die Anzahl an Werkzeugen im Werkzeugkoffer und in der Werkzeugtasche nicht dokumentiert.",
-        extra: "",
-        solution: 50,
-        char: "2"
-    },
-    {
-        id: 11,
-        hint: "Aus irgendeinem Grund liegt nur ein Papier in der Box im Regal.",
-        extra: "XLVI",
-        solution: 45,
-        char: "-"
-    },
-    {
-        id: 12,
-        hint: "Die Festplatte im PC ist schon ziemlich alt, ich glaube man sollte mal nachschauen.",
-        extra: "00101011",
-        solution: 43,
-        char: "+"
-    },
-    {
-        id: 13,
-        hint: "Ich muss noch einen Laptop am Fernseher anschließen, könnte jemand vllt kurz für mich schauen, ob noch ein HDMI-Port frei ist?",
-        extra: "01010101",
-        solution: 85,
-        char: "U"
-    },
-    {
-        id: 14,
-        hint: "Ich habe leider den Code für meinen Aktenkoffer vergessen und komme nicht an meine Dokumente. Naja, inzwischen vergesse ich viele Dinge, wie z.B. das heutige Datum.",
-        extra: "",
-        solution: 66,
-        char: "B"
-    },
-    {
-        id: 15,
-        hint: "Was bringen mir so viele Zahlen? Mir kommt es vor, als hätte es was mit ASCII zu tun. Vielleicht hilft ja die Tabelle im Koffer.",
-        extra: "Letzte Aufgabe",
-        solution: password,
-        char: password
-    },
-];
-*/
