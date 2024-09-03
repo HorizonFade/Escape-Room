@@ -40,6 +40,11 @@ If there was no error start the application with
 
 You can now go to https://localhost:3000 and try it out
 
+## Roadmap
+
+- [ ] Dashboard
+- [ ] Support for English
+
 ## Demo
 
 Try it out on my [Website](https://projects.anschalten.dev/escape)
