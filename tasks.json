@@ -1,0 +1,100 @@
+[
+    {
+      "id": 1,
+      "hint": "Im Raum ist ein Buch mit der Aufschrift: \"Python für Einsteiger\". Findet die Seitennummer des Kapitels: \"Operatoren und Operatorrangfolge\".",
+      "extra": "",
+      "solution": 73,
+      "char": "I"
+    },
+    {
+      "id": 2,
+      "hint": "Eventuell könnte man nach QR-Codes suchen. Vielleicht ist darin etwas versteckt.",
+      "extra": "",
+      "solution": 99,
+      "char": "c"
+    },
+    {
+      "id": 3,
+      "hint": "Mmmh, ich würde eventuell mal die schönen Bilder im Raum anschauen.",
+      "extra": "",
+      "solution": 69,
+      "char": "E"
+    },
+    {
+      "id": 4,
+      "hint": "Wem gehört das Blatt im Drucker?",
+      "extra": "",
+      "solution": 61,
+      "char": "="
+    },
+    {
+      "id": 5,
+      "hint": "Die Rollcontainer sind echt praktisch für persönliche Dokumente.",
+      "extra": "",
+      "solution": 84,
+      "char": "T"
+    },
+    {
+      "id": 6,
+      "hint": "Wie soll man denn schreiben, wenn die Tastatur falsch herum liegt?",
+      "extra": "01010111",
+      "solution": 87,
+      "char": "W"
+    },
+    {
+      "id": 7,
+      "hint": "Ich muss beim ICP anrufen, wie war nochmal die Vorwahl von München?",
+      "extra": "",
+      "solution": 89,
+      "char": "Y"
+    },
+    {
+      "id": 8,
+      "hint": "Der Schrank ist ziemlich staubig, ich glaube man sollte ihn mal wieder sauber machen.",
+      "extra": "",
+      "solution": 97,
+      "char": "a"
+    },
+    {
+      "id": 9,
+      "hint": "Wir müssen immer das Inventar aufschreiben, ich glaube wir haben die Anzahl an Werkzeugen im Werkzeugkoffer und in der Werkzeugtasche nicht dokumentiert.",
+      "extra": "",
+      "solution": 50,
+      "char": "2"
+    },
+    {
+      "id": 10,
+      "hint": "Was ist das für eine komische Beschriftung auf der Box im Regal.",
+      "extra": "XLVI",
+      "solution": 46,
+      "char": "."
+    },
+    {
+      "id": 11,
+      "hint": "Die Festplatte im PC ist schon ziemlich alt, ich glaube man sollte mal nachschauen.",
+      "extra": "00101011",
+      "solution": 43,
+      "char": "+"
+    },
+    {
+      "id": 12,
+      "hint": "Ich muss noch einen Laptop am Fernseher anschließen, könnte jemand vllt kurz für mich schauen, ob noch ein HDMI-Port frei ist?",
+      "extra": "01010101",
+      "solution": 85,
+      "char": "U"
+    },
+    {
+      "id": 13,
+      "hint": "Ich habe leider den Code für meinen Aktenkoffer vergessen und komme nicht an meine Dokumente. Naja, inzwischen vergesse ich viele Dinge, wie z.B. das heutige Datum.",
+      "extra": "",
+      "solution": 66,
+      "char": "B"
+    },
+    {
+      "id": 14,
+      "hint": "Was bringen mir so viele Zahlen? Mir kommt es vor, als hätte es was mit ASCII zu tun. Vielleicht hilft ja die Tabelle im Koffer.",
+      "extra": "Letzte Aufgabe",
+      "solution": "IcE=TWYa2.+UB",
+      "char": "IcE=TWYa2.+UB"
+    }
+  ]

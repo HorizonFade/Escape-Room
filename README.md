@@ -1,28 +1,45 @@
+
 # Escape Room
 
 A Website for a small Escape Room game
 
-## Usage
+## Getting Started
+
+### Prerequisites
 
 Download the latest releases of: 
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [PostgreSQL](https://www.postgresql.org/download)
 
-## Getting Started
+### Setup
 
-### Prerequisites
-First install every needed Node Package
+1. Install every needed Node Package
+   ```sh
+   npm install npm@latest -g
+   ```
 
-* npm
-  ```bash
-  npm install
-  ```
+2. Create a .env file and add this and change "YOURPASSWORD" and "YOURDATABASE" to your chosen password and database name
+   ```sh
+   PGUSER=postgres
+   PGPASSWORD=YOURPASSWORD
+   PGHOST=localhost
+   PGPORT=5432
+   PGDATABASE=YOURDATABASE
+   ```
+3. You can then let it create a table and fill it with the tasks by running the 'createTable.js' once
+   ```sh
+   node createTable.js
+   ```
 
-Then you can try it out
+### Usage
 
-```bash
-  node index.js
-```
+If there was no error start the application with
+   ```sh
+   node index.js
+   ```
+
+You can now go to https://localhost:3000 and try it out
+
 ## Demo
 
 Try it out on my [Website](https://projects.anschalten.dev/escape)
