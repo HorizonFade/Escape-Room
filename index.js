@@ -14,7 +14,6 @@ const db = new pg.Client({
     port: process.env.PGPORT
   });
 
-const password="IcE=TWYa2-+UB";
 let taskCounter=0;
 let standortCounter=0;
 let loesungCounter=0;

@@ -19,6 +19,11 @@ if(result.rows.length < 1){
     tasks.forEach(task => {
         db.query("INSERT INTO task (hint, extra, solution, char, taskid) VALUES ($1, $2, $3, $4, $5)", [task.hint, task.extra, task.solution, task.char, task.id]);
     });
+}else{
+    db.query("DELETE FROM task");
+    tasks.forEach(task => {
+        db.query("INSERT INTO task (hint, extra, solution, char, taskid) VALUES ($1, $2, $3, $4, $5)", [task.hint, task.extra, task.solution, task.char, task.id]);
+    });
 }
 
 
